@@ -119,41 +119,41 @@ def predict_fish_weight(length1, length2, length3, height, width):
     return prediction
 
 
-# In[82]:
+# # In[82]:
 
 
-# Define the input components for the Gradio interface
-inputs = [
-    gr.inputs.Number(label='Length1'),
-    gr.inputs.Number(label='Length2'),
-    gr.inputs.Number(label='Length3'),
-    gr.inputs.Number(label='Height'),
-    gr.inputs.Number(label='Width'),
-]
+# # Define the input components for the Gradio interface
+# inputs = [
+#     gr.inputs.Number(label='Length1'),
+#     gr.inputs.Number(label='Length2'),
+#     gr.inputs.Number(label='Length3'),
+#     gr.inputs.Number(label='Height'),
+#     gr.inputs.Number(label='Width'),
+# ]
 
 
-# In[83]:
+# # In[83]:
 
 
-# Define the output component for the Gradio interface
-output = gr.outputs.Label()
+# # Define the output component for the Gradio interface
+# output = gr.outputs.Label()
 
 
-# In[84]:
+# # In[84]:
 
 
-# Create the Gradio interface
-interface = gr.Interface(fn=predict_fish_weight, inputs=inputs, outputs=output, live=True)
+# # Create the Gradio interface
+# interface = gr.Interface(fn=predict_fish_weight, inputs=inputs, outputs=output, live=True)
 
 
-# In[85]:
+# # In[85]:
 
 
-# Launch the interface with share=True to get a public link
-interface.launch(share=True)
+# # Launch the interface with share=True to get a public link
+# interface.launch(share=True)
 
 
-# In[ ]:
+# # In[ ]:
 
 
 
