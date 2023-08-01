@@ -154,17 +154,17 @@
 
 
 # # # In[ ]:
-
-
 import pandas as pd
+import gradio as gr
 from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
 # Load the data
-df = pd.read_csv('./Fish.csv')
+df = pd.read_csv('Fish.csv')  # Update the file path if necessary
 
-df.dropna()
+# Drop the "Species" column from the DataFrame
 df.drop("Species", axis=1, inplace=True)
 
 # Now fill missing values with the mean of the remaining columns
@@ -174,7 +174,7 @@ df.fillna(df.mean(), inplace=True)
 df.dropna(inplace=True)
 
 # Split the data into features and target
-X = df[['Length1','Length2','Length3', 'Height', 'Width']]
+X = df[['Length1', 'Length2', 'Length3', 'Height', 'Width']]
 y = df['Weight']
 
 # Split the data into training and testing sets
@@ -204,4 +204,20 @@ def predict_fish_weight(length1, length2, length3, height, width):
     prediction = model.predict(df)[0]
     return prediction
 
+# Define the input components for the Gradio interface
+inputs = [
+    gr.inputs.Number(label='Length1'),
+    gr.inputs.Number(label='Length2'),
+    gr.inputs.Number(label='Length3'),
+    gr.inputs.Number(label='Height'),
+    gr.inputs.Number(label='Width'),
+]
 
+# Define the output component for the Gradio interface
+output = gr.outputs.Label()
+
+# Create the Gradio interface
+interface = gr.Interface(fn=predict_fish_weight, inputs=inputs, outputs=output, live=True)
+
+# Launch the interface with share=True to get a public link
+interface.launch(share=True)
